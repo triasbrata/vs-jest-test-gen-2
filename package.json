@@ -1,0 +1,68 @@
+{
+  "name": "vs-jest-test-gen-2",
+  "displayName": "VS Code Jest File Generator",
+  "description": "jest test gen v2",
+  "version": "0.0.1",
+  "engines": {
+    "vscode": "^1.83.0"
+  },
+  "categories": [
+    "Other"
+  ],
+  "activationEvents": [
+    "workspaceContains:**/jest.config.{js,ts,mjs,cjs,json}",
+    "workspaceContains:**/jest.json",
+    "workspaceContains:node_modules/.bin/jest",
+    "workspaceContains:node_modules/react-scripts/node_modules/.bin/jest",
+    "workspaceContains:node_modules/react-native-scripts",
+    "workspaceContains:**/.vscode-jest"
+  ],
+  "main": "./out/extension.js",
+  "contributes": {
+    "commands": [
+      {
+        "command": "vs-jest-test-gen-2.generateFile",
+        "title": "Generate Jest File"
+      }
+    ],
+    "configuration": [
+      {
+        "type": "object",
+        "title": "VS Code ",
+        "properties": {
+          "vs-jest-test-gen-2.suffix-file": {
+            "markdownDescription": "suffix file generated",
+            "type": "string",
+            "scope": "resource",
+            "default": ".spec"
+          }
+        }
+      }
+    ]
+  },
+  "scripts": {
+    "vscode:prepublish": "yarn run compile",
+    "compile": "tsc -p ./",
+    "watch": "tsc -watch -p ./",
+    "pretest": "yarn run compile && yarn run lint",
+    "lint": "eslint src --ext ts",
+    "test": "node ./out/test/runTest.js"
+  },
+  "devDependencies": {
+    "@types/minimist": "^1.2.3",
+    "@types/mocha": "^10.0.2",
+    "@types/node": "18.x",
+    "@types/vscode": "^1.83.0",
+    "@typescript-eslint/eslint-plugin": "^6.7.3",
+    "@typescript-eslint/parser": "^6.7.3",
+    "@vscode/test-electron": "^2.3.4",
+    "eslint": "^8.50.0",
+    "glob": "^10.3.3",
+    "mocha": "^10.2.0",
+    "typescript": "^5.2.2"
+  },
+  "dependencies": {
+    "jest-test-gen": "^1.4.3",
+    "minimist": "^1.2.8"
+  }
+}
